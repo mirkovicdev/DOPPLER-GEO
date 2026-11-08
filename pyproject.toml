@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "doppler_geo"
+version = "0.2.0"
+description = "Locate an audio recording from the Doppler curves of passing propeller aircraft and ADS-B trajectories"
+readme = "README.md"
+authors = [{name = "Antonije Mirkovic"}]
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+classifiers = ["License :: OSI Approved :: MIT License"]
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pandas>=2.0",
+    "pyarrow>=12",
+    "matplotlib>=3.7",
+    "soundfile>=0.12",
+]
+
+[project.optional-dependencies]
+fast = ["numba>=0.58"]
+dem = ["rasterio>=1.3"]
+test = ["pytest>=7"]
+notebook = ["jupyter", "ipykernel", "nbformat"]
+
+[project.scripts]
+doppler-geo = "doppler_geo.cli:main"
+
+[tool.setuptools]
+packages = ["doppler_geo"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
